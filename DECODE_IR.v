@@ -1,6 +1,6 @@
 /********************************************************
 Auther      :-  velidi pradeep kumar 
-date        :-  28/8/2021 
+date        :-  4/9/2021 
 orgnisation :-  IIITDM KANCHIPURAM
 description :- This design will decode NEC pulse distance 
                encoded ir signal
