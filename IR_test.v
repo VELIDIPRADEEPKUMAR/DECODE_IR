@@ -5,7 +5,7 @@
                 output wire [3:0] sel   );
  
                 reg  [15:0] addr;
-					 reg  [7:0]  command;
+					// reg  [7:0]  command;
 					 wire [31:0] data;
 					 wire        load,rep,clk;
 					 wire [15:0] BCD; 
@@ -21,8 +21,8 @@
 					
 			/////////////////////////////////////
 			clk clk1(cry_clk,clk);
-			DECODE_IR IR1(IR,clk,reset,data,load,rep,state);
-			BIN_BCD D(BCD,command,clk);
+			DECODE_IR IR1(IR,clk,data,load,rep,state);
+			BIN_BCD D(BCD,data[15:8],clk);
 			decoder d(sel,counter[9:8]);
 			BCD_SSD ssd1(SSD,BIN);
 //			BCD_SSD ssd2(SSD[13:7],4'b0010);
@@ -31,15 +31,16 @@
 			///////////////////////////////////
 			decoder L(LED,state);
 			
-			
-			always@(posedge clk) 
-			begin 
-			counter <= counter + 1'b1;
-			if(load) begin
-			         addr <= data[31:16];
-						command <= data[15:8];
-						end
-			end
+	 always@(posedge clk) counter <= counter + 1'b1;		
+	 
+		//	always@(posedge clk) 
+		//	begin 
+		//	counter <= counter + 1'b1;
+		//	if(load) begin
+		//	         addr <= data[31:16];
+		//				command <= data[15:8];
+		//				end
+		//	end
 			        
 ////////////////////////////////////////////////////////////////////////			
 			always@(*) 
